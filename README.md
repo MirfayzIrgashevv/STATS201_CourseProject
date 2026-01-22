@@ -31,3 +31,18 @@ Normal, Depression, Suicidal, Anxiety, Bipolar, Stress, Personality disorder
 ## 🎓 Course Information
 
 **Course:** STATS 201
+
+## Weekly Progress
+
+## Week 2: Research Setup & Initial Exploration
+
+* Defined the **research problem** 
+* Selected the **dataset** containing text statements labeled with mental health statuses.
+* Formulated the **machine learning task** as a multi-class text classification problem.
+* Conducted **initial exploratory data analysis (EDA)**
+
+## Week 3: Model Training & Evaluation
+
+* Split the dataset into train and test sets
+* Used Logistic Regression as baseline model
+* Evaluated performance using **accuracy, precision, recall, F1-score**, and a **confusion matrix**.
