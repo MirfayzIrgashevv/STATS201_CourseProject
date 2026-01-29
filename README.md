@@ -46,3 +46,10 @@ Normal, Depression, Suicidal, Anxiety, Bipolar, Stress, Personality disorder
 * Split the dataset into train and test sets
 * Used Logistic Regression as baseline model
 * Evaluated performance using **accuracy, precision, recall, F1-score**, and a **confusion matrix**.
+
+## Week 4: Feature Engineering & Model Comparison
+
+* Text preprocessing (lowercasing, tokenization, stemming)
+* Used XGBoostClassifier and Multinomial Naive Bayes
+* Feature Engineering
+* Evaluated performance using **accuracy, precision, recall, F1-score**, and a **confusion matrix**.
