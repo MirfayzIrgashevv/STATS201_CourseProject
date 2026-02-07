@@ -32,24 +32,61 @@ Normal, Depression, Suicidal, Anxiety, Bipolar, Stress, Personality disorder
 
 **Course:** STATS 201
 
-## Weekly Progress
+# 📈 Weekly Progress Report — STATS201 Course Project
 
-## Week 2: Research Setup & Initial Exploration
+## Week 2: Research Definition & Initial Exploration
 
-* Defined the **research problem** 
-* Selected the **dataset** containing text statements labeled with mental health statuses.
-* Formulated the **machine learning task** as a multi-class text classification problem.
-* Conducted **initial exploratory data analysis (EDA)**
+This week focused on establishing the foundation of the project. The main research question was defined around whether linguistic patterns can be used to distinguish between different mental health statuses, with particular attention to accessibility and language ambiguity.
 
-## Week 3: Model Training & Evaluation
+* Selected the **Sentiment Analysis for Mental Health** dataset from Kaggle
+* Examined dataset structure, features (`statement`, `status`), and missing values
+* Conducted initial exploratory data analysis (EDA)
+* Visualized the distribution of mental health statuses using a pie chart
 
-* Split the dataset into train and test sets
-* Used Logistic Regression as baseline model
-* Evaluated performance using **accuracy, precision, recall, F1-score**, and a **confusion matrix**.
+The analysis revealed clear **class imbalance**, with *Normal* and *Depression* dominating the dataset, while *Anxiety*, *Bipolar*, *Stress*, and *Personality disorder* were underrepresented. This imbalance was noted as an important consideration for later modeling.
 
-## Week 4: Feature Engineering & Model Comparison
+---
 
-* Text preprocessing (lowercasing, tokenization, stemming)
-* Used XGBoostClassifier and Multinomial Naive Bayes
-* Feature Engineering
-* Evaluated performance using **accuracy, precision, recall, F1-score**, and a **confusion matrix**.
+## Week 3: Baseline Model & Evaluation
+
+The goal of this week was to establish a strong and interpretable baseline model.
+
+* Cleaned the dataset by removing rows with missing text values
+* Split the data into **80% training / 20% test sets** using stratified sampling
+* Converted text into numerical features using **TF-IDF vectorization**
+* Trained a **Logistic Regression** baseline model
+
+Model performance was evaluated using accuracy, precision, recall, F1-score, and a confusion matrix.
+The baseline model achieved an accuracy of **77.8%**, performing especially well on the *Normal* class, while showing notable confusion between linguistically similar categories such as *Depression* and *Suicidal*.
+
+---
+
+## Week 4: Feature Engineering & Error Exploration
+
+This week focused on expanding the feature space and understanding model errors more deeply.
+
+* Added interpretable structural features:
+
+  * number of characters per statement
+  * number of sentences per statement
+* Analyzed descriptive statistics for these features
+* Examined **misclassified samples** to understand instance-level errors
+
+The error analysis showed that misclassifications were **systematic**, not random. Most errors occurred between clinically related mental health conditions, suggesting strong overlap in language rather than weaknesses in model implementation.
+
+---
+
+## Week 5: Model Comparison, Robustness & Interpretability
+
+The final stage concentrated on understanding model behavior and improving robustness.
+
+* Trained and compared:
+
+  * Logistic Regression
+  * Multinomial Naive Bayes
+  * XGBoost
+* Used **train vs. test diagnostics** to identify underfitting and overfitting
+* Regularized XGBoost to reduce overfitting and improve generalization
+* Compared confusion matrices across models to identify consistent error patterns
+
+In addition, TF-IDF was used to extract the **top 20 unigrams and bigrams** for each mental health status. These results were visualized to provide interpretable insights into status-specific language. The analysis showed that categories with more distinctive vocabulary (e.g., *Anxiety*) were easier to classify, while overlapping language led to persistent confusion (e.g., *Depression* vs. *Suicidal*).
