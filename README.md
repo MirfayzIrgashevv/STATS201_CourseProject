@@ -45,16 +45,6 @@ Raw text dataset
 
 ---
 
-## Data Source
-
-* **Dataset:** Sentiment Analysis for Mental Health (Kaggle)
-* **Features:**
-
-  * `statement` (text)
-  * `status` (mental health label)
-
----
-
 ## Mental Health Status Distribution
 
 The dataset is imbalanced, with Normal and Depression dominating.
