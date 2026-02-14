@@ -26,7 +26,7 @@ Normal, Depression, Suicidal, Anxiety, Bipolar, Stress, Personality disorder
 ## 🛠️ Methods Used
 
 * Sentiment analysis
-* Word cloud visualization for status-specific language
+* TF-IDF and Fighting Words for status-specific language
 
 ## 🎓 Course Information
 
