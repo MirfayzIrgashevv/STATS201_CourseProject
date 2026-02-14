@@ -55,7 +55,7 @@ The dataset is imbalanced, with Normal and Depression dominating.
 
 ---
 
-## Notebook: `CourseProjectMentalHealth.ipynb`
+## Notebook: [`CourseProjectMentalHealth.ipynb`](code/CourseProjectMentalHealth.ipynb)
 
 ---
 
