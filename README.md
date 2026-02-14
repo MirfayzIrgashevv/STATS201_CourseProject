@@ -32,61 +32,240 @@ Normal, Depression, Suicidal, Anxiety, Bipolar, Stress, Personality disorder
 
 **Course:** STATS 201
 
-# 📈 Weekly Progress Report — STATS201 Course Project
+## End-to-End Pipeline
 
-## Week 2: Research Definition & Initial Exploration
+Pipeline logic:
 
-This week focused on establishing the foundation of the project. The main research question was defined around whether linguistic patterns can be used to distinguish between different mental health statuses, with particular attention to accessibility and language ambiguity.
-
-* Selected the **Sentiment Analysis for Mental Health** dataset from Kaggle
-* Examined dataset structure, features (`statement`, `status`), and missing values
-* Conducted initial exploratory data analysis (EDA)
-* Visualized the distribution of mental health statuses using a pie chart
-
-The analysis revealed clear **class imbalance**, with *Normal* and *Depression* dominating the dataset, while *Anxiety*, *Bipolar*, *Stress*, and *Personality disorder* were underrepresented. This imbalance was noted as an important consideration for later modeling.
+Raw text dataset
+→ Data exploration & preprocessing
+→ TF-IDF feature extraction
+→ Model training (Logistic Regression, Naive Bayes, XGBoost)
+→ Model diagnostics (confusion matrices, misclassified samples)
+→ Linguistic interpretation (TF-IDF & Fighting Words)
 
 ---
 
-## Week 3: Baseline Model & Evaluation
+## Data Source
 
-The goal of this week was to establish a strong and interpretable baseline model.
+* **Dataset:** Sentiment Analysis for Mental Health (Kaggle)
+* **Features:**
 
-* Cleaned the dataset by removing rows with missing text values
-* Split the data into **80% training / 20% test sets** using stratified sampling
-* Converted text into numerical features using **TF-IDF vectorization**
-* Trained a **Logistic Regression** baseline model
-
-Model performance was evaluated using accuracy, precision, recall, F1-score, and a confusion matrix.
-The baseline model achieved an accuracy of **77.8%**, performing especially well on the *Normal* class, while showing notable confusion between linguistically similar categories such as *Depression* and *Suicidal*.
+  * `statement` (text)
+  * `status` (mental health label)
 
 ---
 
-## Week 4: Feature Engineering & Error Exploration
+## Mental Health Status Distribution
 
-This week focused on expanding the feature space and understanding model errors more deeply.
+The dataset is imbalanced, with Normal and Depression dominating.
 
-* Added interpretable structural features:
+**Figure: Class distribution of mental health statuses**
 
-  * number of characters per statement
-  * number of sentences per statement
-* Analyzed descriptive statistics for these features
-* Examined **misclassified samples** to understand instance-level errors
-
-The error analysis showed that misclassifications were **systematic**, not random. Most errors occurred between clinically related mental health conditions, suggesting strong overlap in language rather than weaknesses in model implementation.
+![Class Distribution](images/ClassDistribution.png)
 
 ---
 
-## Week 5: Model Comparison, Robustness & Interpretability
+## Notebook: `CourseProjectMentalHealth.ipynb`
 
-The final stage concentrated on understanding model behavior and improving robustness.
+---
 
-* Trained and compared:
+## 1. Import & Load
 
-  * Logistic Regression
-  * Multinomial Naive Bayes
-  * XGBoost
-* Used **train vs. test diagnostics** to identify underfitting and overfitting
-* Regularized XGBoost to reduce overfitting and improve generalization
-* Compared confusion matrices across models to identify consistent error patterns
+* Loaded dataset using pandas
+* Verified dataset shape and column names
 
-In addition, TF-IDF was used to extract the **top 20 unigrams and bigrams** for each mental health status. These results were visualized to provide interpretable insights into status-specific language. The analysis showed that categories with more distinctive vocabulary (e.g., *Anxiety*) were easier to classify, while overlapping language led to persistent confusion (e.g., *Depression* vs. *Suicidal*).
+---
+
+## 2. Initial Exploration
+
+* Displayed sample statements per class
+* Checked for missing values
+* Verified class imbalance
+
+**Figure: Example statements by mental health status**
+
+![Example of Statements](images/ExampleofStatements.png)
+
+---
+
+## 3. Text Preprocessing
+
+Steps applied to the `statement` column:
+
+* Converted text to lowercase
+* Removed URLs, punctuation, markdown links, and special characters
+* Tokenized text
+* Applied **Porter stemming** to reduce word variants
+* Stored results in:
+
+  * `tokens`
+  * `tokens_stemmed`
+
+This ensured consistent feature representation and reduced vocabulary size.
+
+---
+
+## 4. Feature Engineering
+
+* Created **TF-IDF vectors** for:
+  * Unigrams
+  * Bigrams
+* Used stop-word removal
+* Limited vocabulary size for interpretability
+
+---
+
+## 5. Exploratory Text Analysis
+
+### Word Cloud Visualization by Mental Health Status
+
+To explore dominant vocabulary patterns before formal modeling, word clouds were generated for each mental health status. These visualizations highlight the most frequent and salient words used within each category and provide an intuitive overview of how language differs across conditions.
+
+**Figures:**
+
+* Anxiety — Word Cloud - Unigram
+* Anxiety — Word Cloud - Bigram
+
+![Anxiety Word Cloud](images/WordCloudUnigram\(Anxiety\).png)
+![Anxiety Word Cloud Bigram](images/WordCloudBigram\(Anxiety\).png)
+
+---
+
+## 6. Model Training
+
+### Models Trained
+
+* Logistic Regression
+* Multinomial Naive Bayes
+* XGBoost Classifier
+
+### Train/Test Split
+
+* Stratified 80/20 split
+* Same TF-IDF representation used across models
+
+---
+
+## 7. Model Evaluation
+
+Metrics used:
+
+* Accuracy
+* F1-score
+* Confusion matrices
+
+**Figures:**
+
+* Confusion Matrix — Logistic Regression
+* Confusion Matrix — Naive Bayes
+* Confusion Matrix — XGBoost
+
+![Logistic Regression Confusion Matrix](images/ConfusionMatrix\(LogReg\).png)
+![Naive Bayes Confusion Matrix](images/ConfusionMatrix\(NaiveBayes\).png)
+![XGBoost Confusion Matrix](images/ConfusionMatrix\(XGBoost\).png)
+
+---
+
+## 8. Error Analysis
+
+### Misclassified Samples
+
+* Examined samples misclassified across models
+* Found consistent confusion between:
+
+  * Depression ↔ Suicidal
+  * Anxiety ↔ Stress
+  * Personality disorder ↔ Depression
+
+This indicated linguistic overlap rather than random error.
+
+---
+
+## 9. Bias–Variance Diagnostics
+
+* Naive Bayes: underfitting (low train & test performance)
+* XGBoost: overfitting (large train–test gap)
+* Logistic Regression: best bias–variance trade-off
+
+**Figure: Train vs Test Accuracy and F1 Comparison**
+
+![Train vs Test Models Comparison](images/TrainTestModelsComparison.png)
+
+---
+
+## 10. Linguistic Distinctiveness Analysis
+
+### TF-IDF Interpretation
+
+TF-IDF highlights **frequent and interpretable phrases** used within each mental health status.
+
+**Figures:**
+
+* TF-IDF Top 20 Bigrams per Status
+
+![TF-IDF Anxiety](images/TFIDF\(Anxiety\).png)
+![TF-IDF Depression](images/TFIDF\(Depression\).png)
+![TF-IDF Suicidal](images/TFIDF\(Suicidal\).png)
+![TF-IDF Stress](images/TFIDF\(Stress\).png)
+![TF-IDF Bipolar](images/TFIDF\(Bipolar\).png)
+![TF-IDF Normal](images/TFIDF\(Normal\).png)
+![TF-IDF Personality Disorder](images/TFIDF\(Personality).png)
+
+---
+
+### Fighting Words Method
+
+Implemented a log-odds–based Fighting Words approach for bigrams.
+
+* Compares one class vs all others
+* Computes z-scores for distinctiveness
+
+**Figures:**
+
+* Fighting Words — Anxiety
+* Fighting Words — Depression
+* Fighting Words — Suicidal
+* Fighting Words — Stress
+* Fighting Words — Bipolar
+* Fighting Words — Personality Disorder
+
+![Fighting Words Anxiety](images/FightingWords\(Anxiety\).png)
+![Fighting Words Depression](images/FightingWords\(Depression\).png)
+![Fighting Words Suicidal](images/FightingWords\(Suicidal\).png)
+![Fighting Words Stress](images/FightingWords\(Stress\).png)
+![Fighting Words Bipolar](images/FightingWords\(Bipolar\).png)
+![Fighting Words Normal](images/FightingWords\(Normal\).png)
+![Fighting Words Personality Disorder](images/FightingWords\(Personality).png)
+
+---
+
+## 11. Method Comparison: TF-IDF vs Fighting Words
+
+* **TF-IDF:** clear, human-readable, suitable for public interpretation
+* **Fighting Words:** statistically strong, highlights extreme distinctions
+
+**Final choice:** TF-IDF bigrams
+Reason: better alignment with accessibility and interpretability goals.
+
+---
+
+## Scope
+
+* Identifies **textual patterns**, not clinical diagnoses
+* Not a medical or diagnostic tool
+* Intended for exploratory and educational analysis
+
+---
+
+## Limitations
+
+* Self-reported text introduces noise
+* Label quality is uncertain
+* Class imbalance affects minority classes
+* Short statements limit contextual understanding
+
+---
+
+## Conclusion
+
+The project shows that while mental health conditions share a common conversational language, **distinctive phrases still emerge** for each status. Understanding *how* people express mental health experiences is as important as predicting labels.
