@@ -227,6 +227,7 @@ Implemented a log-odds–based Fighting Words approach for bigrams.
 * Fighting Words — Suicidal
 * Fighting Words — Stress
 * Fighting Words — Bipolar
+* Fighting Words — Normal
 * Fighting Words — Personality Disorder
 
 ![Fighting Words Anxiety](images/FightingWords\(Anxiety\).png)
