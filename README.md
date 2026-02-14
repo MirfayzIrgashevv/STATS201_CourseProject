@@ -209,7 +209,7 @@ TF-IDF highlights **frequent and interpretable phrases** used within each mental
 ![TF-IDF Stress](images/TFIDF\(Stress\).png)
 ![TF-IDF Bipolar](images/TFIDF\(Bipolar\).png)
 ![TF-IDF Normal](images/TFIDF\(Normal\).png)
-![TF-IDF Personality Disorder](images/TFIDF\(Personality).png)
+![TF-IDF Personality Disorder](images/TFIDF\(Personality\).png)
 
 ---
 
@@ -235,7 +235,7 @@ Implemented a log-odds–based Fighting Words approach for bigrams.
 ![Fighting Words Stress](images/FightingWords\(Stress\).png)
 ![Fighting Words Bipolar](images/FightingWords\(Bipolar\).png)
 ![Fighting Words Normal](images/FightingWords\(Normal\).png)
-![Fighting Words Personality Disorder](images/FightingWords\(Personality).png)
+![Fighting Words Personality Disorder](images/FightingWords\(Personality\).png)
 
 ---
 
