@@ -2,6 +2,8 @@
 
 Language plays a central role in how individuals express emotional and psychological states. This project uses machine learning and text analysis to explore how different mental health statuses (such as depression, anxiety, stress, and suicidal ideation) are expressed through language in online posts. A key focus of the project is **interpretability**: rather than only predicting labels, we identify **status-specific words** and visualize them using **word clouds** to better understand how different mental health conditions are linguistically expressed.
 
+GitHub Pages: https://mirfayzirgashevv.github.io/STATS201_CourseProject/
+
 ## 🎯 Research Objectives
 
 In addition to **mental health status classification**, this project explores the following question:
